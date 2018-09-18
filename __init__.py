@@ -44,7 +44,7 @@ def btn_grow_ivy(self, context):
 
 
 classes = (
-    op_import_images.IIAP_OT_import_images_as_planes,
+    op_grow_ivy.OBJECT_OT_grow_ivy,
 )
 
 
