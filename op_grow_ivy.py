@@ -18,25 +18,25 @@ import numpy as np
 
 
 class Particle():
-    def __init__(self, id=0, co=Vector((0, 0, 0)), parent=None):
+    def __init__(self, id=0, branch_id=0, co=Vector((0, 0, 0)), parent=None):
         self.id = id
+        self.branch_id = branch_id
         self.parent = parent
         self.children = []
         self.rest = Matrix.Translation(co)
-        self.current = Matrix()
+        self.current = self.rest.copy()
         self.vel = Vector()
 
     def direction(self):
         if self.parent:
             return self.rest.translation - self.parent.rest.translation
-        else:
-            return Vector((0, 0, 1))
+        return Vector((0, 0, 1))
 
 
 class Plant():
     def __init__(self, seed=Vector((0, 0, 0))):
         self.seed = seed
-        self.particles = [Particle(id=0, co=self.seed)]
+        self.particles = [Particle(co=self.seed)]
         self.step = 0
 
     def sim(self):
